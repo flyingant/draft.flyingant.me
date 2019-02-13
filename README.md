@@ -1,31 +1,7 @@
-# HTML page boilerplate
+This is the tool:
 
-HTML page boilerplate is the boilerplate to help me building a html page quickly with the help by webpack and scss.
+1. can help to clean the formats when doing copying and pasting from formatted file.
 
-## Getting Started
+2. can help to check the Grammar and Spelling under Chrome browser with extension. (https://www.grammarly.com)
 
-The project is based on `webpack` and `sass`
-
-### Prerequisites
-
-```
-yarn or npm
-```
-
-### Installing
-
-1. `yarn install` or `npm install`
-2. run dev `npm run dev`
-3. build the final page `npm run build`
-
-## Versioning
-
-1.0.1 (last update: 2019-02-07)
-
-## Developers
-
-MaYi (WCL) <liucheng@flyingant.me>
-
-## Acknowledgments
-
-* work harder and code harder
+3. can help to persist the text conent by URL.(limit of 2000 characters)
