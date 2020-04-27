@@ -58,14 +58,6 @@ module.exports = {
         use: ["json-loader"]
       },
       {
-        test: /\.scss$/,
-        include: path.resolve(__dirname, "src/scss"),
-        loader: extractCustomerStyle.extract({
-            fallback: 'style-loader',
-            use: ['css-loader', 'sass-loader']
-        })
-      },
-      {
         test: /\.css$/,
         use: extractCSSLib.extract({
           fallback: "style-loader",
@@ -76,7 +68,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['.js', '.jsx','.scss', '.sass', '.css'],
+    extensions: ['.js', '.jsx', '.css'],
   },
 
   output: {

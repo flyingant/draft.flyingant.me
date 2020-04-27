@@ -53,13 +53,6 @@ module.exports = {
         use: ["json-loader"]
       },
       {
-        test: /\.scss$/,
-        use: [
-          "style-loader",
-          "css-loader", "sass-loader"
-        ]
-      },
-      {
         test: /\.css$/,
         use: [
           "style-loader",
@@ -70,7 +63,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['.js', '.jsx','.scss', '.sass', '.css'],
+    extensions: ['.js', '.jsx', '.css'],
   },
 
   devServer: {
