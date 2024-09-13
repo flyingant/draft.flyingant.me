@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars, no-console */
 import {
   getType,
   isObject,
