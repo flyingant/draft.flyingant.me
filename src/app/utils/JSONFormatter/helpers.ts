@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars, no-console */
+/* eslint-disable */
 /*
  * Escapes `"` charachters from string
 */
