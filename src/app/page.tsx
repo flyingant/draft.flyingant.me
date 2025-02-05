@@ -4,8 +4,7 @@ import JSONFormatter from "./utils/JSONFormatter";
 import { useEffect, useState, useRef } from "react";
 import { QRCodeSVG } from 'qrcode.react';
 import {
-  FaQrcode,
-  FaClipboard
+  FaQrcode
 } from "react-icons/fa";
 import PageTitle from "./components/PageTitle";
 
@@ -21,7 +20,8 @@ export default function Page() {
   const onHandleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setContent(event.target.value);
     setCount(event.target.value.length);
-    setHash(Base64.encode(event.target.value));
+    // disabled the setHash to prevent the hash from being updated which will cause the page to be logged by Chrome history
+    // setHash(Base64.encode(event.target.value));
   };
   const onToggleDisplayFormatterJSONOutput = () => {
     toggleDisplayFormatterJSONOutput(!displayFormatterJSONOutput);
@@ -34,6 +34,16 @@ export default function Page() {
       setHash(Base64.encode(clipboardText));
     } catch (err) {
       console.error("Failed to read clipboard contents: ", err);
+    }
+  };
+  const onCopyContentToClipboard = async () => {
+    try {
+      const hash = Base64.encode(content);
+      const currentUrlWithoutHash = window.location.origin + window.location.pathname + window.location.search;
+      setHash(hash);
+      await navigator.clipboard.writeText(`${currentUrlWithoutHash}#${hash}`);
+    } catch (err) {
+      console.error("Failed to copy content to clipboard: ", err);
     }
   };
   const onHandleGenerateQRCode = async () => {
@@ -69,12 +79,12 @@ export default function Page() {
       <hr className="container mb-4" />
       <div className="container flex flex-col p-4 relative">
         <div className="w-full flex flex-row items-start justify-between pb-2">
-          <button
+        <button
             type="button"
             className="text-xs bg-white hover:bg-gray-100 text-gray-400 py-1 px-2 border border-gray-400 rounded shadow"
             onClick={onPasteContentFromClipboard}
           >
-            <FaClipboard/>
+            Paste from the Clipboard
           </button>
         </div>
         <div className="w-full flex flex-col items-end">
@@ -100,6 +110,13 @@ export default function Page() {
               onClick={onToggleDisplayFormatterJSONOutput}
             >
               Prettify JSON
+            </button>
+            <button
+              type="button"
+              className="text-xs bg-white hover:bg-gray-100 text-gray-400 py-1 px-2 border border-gray-400 rounded shadow mr-2"
+              onClick={onCopyContentToClipboard}
+            >
+              Copy the Permenant link
             </button>
           </div>
           <small>length: {count}</small>
